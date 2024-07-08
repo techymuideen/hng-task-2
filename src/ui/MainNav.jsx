@@ -137,7 +137,7 @@ const MainNav = () => {
             </StyledNavLink>
           </li>
           <li className="only-mobile">
-            <StyledNavLink to="carts" onClick={() => setOpen(false)}>
+            <StyledNavLink to="cart" onClick={() => setOpen(false)}>
               <BsCart size={24} />
               Carts
             </StyledNavLink>

@@ -125,7 +125,8 @@ const Container = styled.div`
   textarea {
     border-radius: 5px;
     padding: 1rem;
-    border: 1.5px solid #0a142f;
+    outline: none;
+    border: 0.5px solid #0a142f50;
   }
 
   & textarea {

@@ -4,6 +4,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { BiLogoInstagramAlt } from "react-icons/bi";
 import { FaTwitter } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
+import Logo from "./Logo";
 
 const StyledFooter = styled.footer`
   font-weight: 500;
@@ -62,7 +63,7 @@ const Footer = () => {
     <StyledFooter>
       <Container>
         <div className="imgContainer">
-          <img src="../../public/Logo.png" />
+          <Logo />
         </div>
 
         <div>

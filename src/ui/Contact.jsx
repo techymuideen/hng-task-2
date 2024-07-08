@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import firstImage from "../../public/Rectangle 339.png";
+import secondImage from "../../public/Vector.png";
 
 const StyledContact = styled.div`
   height: 60rem;
@@ -142,8 +144,8 @@ const Container = styled.div`
     align-self: flex-start;
 
     &:hover {
-    opacity: 0.8;
-  }
+      opacity: 0.8;
+    }
   }
 `;
 
@@ -151,9 +153,9 @@ const Contact = () => {
   return (
     <StyledContact>
       <div className="content">
-        <img src="../../public/Rectangle 339.png" />
+        <img src={firstImage} />
         <Container>
-          <img className="second-img" src="../../public/Vector.png" />
+          <img className="second-img" src={secondImage} />
           <div className="text-container">
             <h2>Contact US</h2>
             <p>

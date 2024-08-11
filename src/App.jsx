@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import { DarkModeProvider } from "./context/DarkModeContext";
 import Store from "./pages/Store";
+import Login from "./pages/Login";
 
 function App() {
   const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ function App() {
           <GlobalStyles />
           <BrowserRouter>
             <Routes>
+              <Route path="login" element={<Login />} />
               <Route element={<AppLayout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="cart" element={<Cart />} />

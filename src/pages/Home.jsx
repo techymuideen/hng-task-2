@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import AvailableProducts from "../features/products/available-products/AvailableProducts";
-import Products from "../features/products/products-list/Products";
+import Products from "../features/products/Products";
+import Hero from "../ui/Hero";
 
 const StyledHome = styled.main`
   display: flex;
@@ -11,8 +11,8 @@ const StyledHome = styled.main`
 const Home = () => {
   return (
     <StyledHome>
-      <Products />
-      <AvailableProducts />
+      <Hero />
+      <Products size="few" />
     </StyledHome>
   );
 };

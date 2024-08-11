@@ -1,16 +1,18 @@
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import LogoImg from "../../public/Logo.png";
 
-const StyledLogo = styled.div`
+const StyledLogo = styled(NavLink)`
   text-align: center;
 `;
 
-const Img = styled.img``;
+const Heading = styled.h1`
+  text-transform: uppercase;
+`;
 
 const Logo = () => {
   return (
-    <StyledLogo>
-      <Img src={LogoImg} alt="Logo" />
+    <StyledLogo to="/">
+      <Heading>Kasua</Heading>
     </StyledLogo>
   );
 };

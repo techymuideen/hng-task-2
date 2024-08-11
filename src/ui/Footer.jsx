@@ -8,13 +8,28 @@ import Logo from "./Logo";
 
 const StyledFooter = styled.footer`
   font-weight: 500;
+  margin: 0 auto;
+  max-width: 144rem;
+
+  padding: 2rem 8rem;
+  background-color: var(--color-grey-50);
+
+  @media (max-width: 1000px) {
+    padding: 1rem 4rem;
+    max-width: 100vw;
+  }
+
+  @media (max-width: 500px) {
+    padding: 1rem 2rem;
+    width: 100vw;
+  }
 
   p {
     margin-top: 4rem;
     font-size: 1.4rem;
     line-height: 26px;
     text-align: center;
-    color: #00000099;
+    color: var(--color-grey-500);
   }
 `;
 
@@ -28,7 +43,7 @@ const Container = styled.div`
     font-size: 1.8rem;
     line-height: 22.68px;
     margin-bottom: 3rem;
-    color: #000;
+    color: var(--color-grey-900);
 
     @media (max-width: 500px) {
       margin-bottom: 0;
@@ -37,11 +52,18 @@ const Container = styled.div`
 
   li {
     font-size: 1.4rem;
-    color: #00000099;
+    color: var(--color-grey-500);
     line-height: 30px;
 
     &:hover {
-      opacity: 0.8;
+      color: var(--color-grey-900);
+    }
+
+    p {
+      font-size: 1.4rem;
+      color: var(--color-grey-500);
+      line-height: 30px;
+      margin-top: 0rem;
     }
   }
 
@@ -100,10 +122,10 @@ const Footer = () => {
           <h2>Contact Us</h2>
           <ul>
             <li>
-              <Link>Mobile No: +234123-456-890</Link>
+              <p>Mobile No: +234123-456-890</p>
             </li>
             <li>
-              <Link>Office No: +234123-456-890</Link>
+              <p>Office No: +234123-456-890</p>
             </li>
           </ul>
         </div>

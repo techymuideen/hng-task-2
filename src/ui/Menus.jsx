@@ -1,12 +1,12 @@
 import styled from "styled-components";
-
-import { PiGearSixLight } from "react-icons/pi";
-import { BsCart } from "react-icons/bs";
-import { VscBell } from "react-icons/vsc";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-
-import ProfilePicture from "../../public/image.png";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import { BsCart } from "react-icons/bs";
+import { IoIosArrowDown } from "react-icons/io";
+import { BsPersonFillCheck } from "react-icons/bs";
+import { IoMdHelpCircleOutline } from "react-icons/io";
+import DarkModeToggle from "./DarkModeToggle";
 
 const StyledMenu = styled.div`
   display: flex;
@@ -26,46 +26,49 @@ const Container = styled(NavLink)`
   background: none;
   padding: 1rem 0.5rem;
   position: relative;
+  gap: 0.5rem;
+
+  &:hover {
+    color: var(--color-green-700);
+  }
 `;
 
 const Active = styled.div`
   background-color: var(--color-primary-green);
-  height: 1.2rem;
-  width: 1.2rem;
-  border: 2px solid #fff;
-  border-radius: 100px;
-  position: absolute;
-  right: 0;
-`;
-
-const ImgContainer = styled.div`
+  border: 2px solid var(--color-grey-0);
   display: flex;
   align-items: center;
-  margin-left: 2rem;
+  justify-content: center;
+  color: var(--color-grey-0);
+  padding: 0rem 0.4rem;
+  border-radius: 1000px;
+
+  text-align: center; /* Optional: center text alignment */
+
+  position: absolute;
+  right: 0;
+  top: 0;
 `;
 
-const Img = styled.img``;
-
 const Menu = () => {
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   return (
     <StyledMenu>
-      <Container to="settings">
-        <PiGearSixLight size={24} />
+      <Container>
+        <BsPersonFillCheck size={30} />
+        Hi, Muideen <IoIosArrowDown />
+      </Container>
+      <Container>
+        <IoMdHelpCircleOutline size={25} /> Help
+        <IoIosArrowDown />
       </Container>
       <Container to="cart">
-        <Active />
-        <BsCart size={24} />
+        {totalQuantity > 0 && <Active>{totalQuantity}</Active>}
+        <BsCart size={30} />
       </Container>
-      <Container to="notifications">
-        <Active />
-        <VscBell size={24} />
+      <Container>
+        <DarkModeToggle />
       </Container>
-      <ImgContainer>
-        <Container to="profile">
-          <Img src={ProfilePicture} />
-          <MdOutlineKeyboardArrowDown color="#534FEB" size={24} />
-        </Container>
-      </ImgContainer>
     </StyledMenu>
   );
 };

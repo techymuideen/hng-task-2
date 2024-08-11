@@ -12,6 +12,10 @@ import { CgProfile } from "react-icons/cg";
 
 const NavContainer = styled.div`
   position: relative;
+
+  @media (min-width: 700px) {
+    display: none;
+  }
 `;
 
 const NavList = styled.ul`

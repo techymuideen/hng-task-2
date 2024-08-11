@@ -1,43 +1,72 @@
 import CartItem from "./CartItem";
-import { cartItems } from "../../data/products/data-products";
+import cartImg from "../../../public/cart.svg";
 import styled from "styled-components";
+import Button from "../../ui/Button";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const CartContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 7rem;
-  padding: 4rem 0;
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-sm);
 
-  .button-container {
-    align-self: flex-end;
+  & > p {
+    border-bottom: 1px solid #00000033;
+    padding: 1rem 2rem;
+    font-weight: 600;
+    font-size: 2rem;
   }
 `;
 
-const CartButton = styled.button`
-  font-size: 1.4rem;
-  font-weight: 400;
-  padding: 1rem 1.2rem;
-  border: none;
-  color: #fff;
-  border-radius: 8px;
-  background: linear-gradient(180deg, #269255 0%, #2d4c74 100%);
+const StyledItems = styled.ul`
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+`;
 
-  text-transform: uppercase;
+const EmptyContainer = styled.div`
+  background-color: var(--color-grey-0);
+  display: flex;
+  padding: 4rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--border-radius-sm);
+  gap: 1rem;
 
-  &:hover {
-    opacity: 0.8;
+  img {
+    max-height: 6rem;
+    width: 6rem;
   }
 `;
 
 const CartItems = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+
+  if (cartItems.length === 0) {
+    return (
+      <EmptyContainer>
+        <img src={cartImg} />
+        <h4>Your cart is empty!</h4>
+        <p>Browse our categories and discover our best deals</p>
+
+        <Link to="/">
+          <Button size="large">Start Shopping</Button>
+        </Link>
+      </EmptyContainer>
+    );
+  }
+
   return (
     <CartContainer>
-      {cartItems.map((product) => (
-        <CartItem product={product} key={product.id} />
-      ))}
-      <div className="button-container">
-        <CartButton>Checkout</CartButton>
-      </div>
+      <p>Cart ({totalQuantity})</p>
+      <StyledItems>
+        {cartItems.map((product) => (
+          <CartItem product={product} key={product.id} />
+        ))}
+      </StyledItems>
     </CartContainer>
   );
 };

@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import { IoMdCart } from "react-icons/io";
 
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 
-import Button from "../../../ui/Button";
+import Button from "../../ui/Button";
+import { cartActions } from "../../store/cart-slice";
 
 const Container = styled.div`
   display: flex;
@@ -15,7 +17,7 @@ const Container = styled.div`
   height: 100%;
   border-radius: 1.6rem;
   overflow: hidden;
-  background-color: #fff;
+  background-color: var(--color-grey-50);
   box-shadow: 0px 4px 8px 0px #00000014;
 
   margin: 0 auto;
@@ -25,25 +27,25 @@ const Top = styled.div`
   position: relative;
   text-align: center;
   padding: 1.5rem 1.5rem;
-  background-color: #c8efd9;
+  background-color: var(--color-grey-50);
+  max-height: 20rem;
 `;
 
-const Discount = styled.p`
-  position: absolute;
-  right: 1.5rem;
-  color: var(--color-primary-green);
-  background-color: #f1ffed;
-  font-size: 1.4rem;
-  padding: 0.2rem 1.2rem;
-  text-transform: uppercase;
+const Img = styled.img`
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+`;
 
-  border: 1px solid #86e588;
-  border-radius: 3.2rem;
+const Price = styled.div`
+  font-size: 3rem;
+  z-index: 10;
+  color: var(--color-green);
 `;
 
 const Bottom = styled.div`
   padding: 1.5rem 1.5rem;
-  background-color: #fff;
+  background-color: var(--color-grey-50);
   margin-top: auto;
 
   & div div {
@@ -55,8 +57,12 @@ const Bottom = styled.div`
   & p {
     font-size: 1.4rem;
     font-weight: 400;
-    color: #00000099;
+    color: var(color-grey-200);
     margin: 0.7rem 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 `;
 
@@ -64,6 +70,10 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   gap: 4rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 
   & h3 {
     font-size: 2.4rem;
@@ -73,22 +83,32 @@ const Title = styled.div`
   & h4 {
     font-size: 1.4rem;
     font-weight: 400;
-    color: #269255;
+    color: var(--color-green-700);
   }
 `;
 
 const ProductItem = ({ product }) => {
+  const dispatch = useDispatch();
+  const addItemToCartHandler = () => {
+    dispatch(
+      cartActions.addToCart({
+        id: product.id,
+        title: product.name,
+        price: product.price,
+        image: product.image,
+      }),
+    );
+  };
   return (
     <Container>
       <Top>
-        <Discount>{product.discount}% discount</Discount>
-        <img src={product.image} />
+        <Img src={product.image} />
       </Top>
       <Bottom>
         <Title>
           <h3>{product.name}</h3>
-          <h4>#{product.price}</h4>
         </Title>
+        <Price>${product.price.toFixed(2)}</Price>
         <div>
           <div>
             <FaStar color="#FFD203" />
@@ -100,7 +120,7 @@ const ProductItem = ({ product }) => {
           </div>
         </div>
         <p>{product.description}</p>
-        <Button>
+        <Button onClick={addItemToCartHandler}>
           Add to Cart <IoMdCart size="24px" />
         </Button>
       </Bottom>

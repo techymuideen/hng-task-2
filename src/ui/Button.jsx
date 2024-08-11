@@ -7,26 +7,30 @@ const sizes = {
     text-transform: uppercase;
     font-weight: 600;
     text-align: center;
+    border-radius: 1.2rem;
   `,
   medium: css`
     font-size: 1.4rem;
     padding: 1rem 3.5rem;
     font-weight: 500;
+    border-radius: 1.2rem;
   `,
   large: css`
-    font-size: 1.6rem;
-    padding: 1.2rem 2.4rem;
+    font-size: 2rem;
+    padding: 0.2rem 2rem;
     font-weight: 500;
+    box-shadow: none;
   `,
 };
 
 const variations = {
   primary: css`
-    color: #fff;
-    background-color: var(--color-primary-green);
+    color: var(--color-grey-50);
+    background-color: var(--color-grey-700);
 
     &:hover {
-      background-color: #0e8648d0;
+      color: var(--color-grey-100);
+      opacity: 0.7;
     }
   `,
   secondary: css`
@@ -50,8 +54,7 @@ const variations = {
 
 const Button = styled.button`
   border: none;
-  border-radius: 1.2rem;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-lg);
 
   display: flex;
   align-items: center;

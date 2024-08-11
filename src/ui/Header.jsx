@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
-import Menu from "./Menus";
+import Menu from "./Menu";
 import MainNav from "./MainNav";
 
 const HeaderContainer = styled.header`
-  background-color: var(--color-grey-50);
+  background-color: var(--color-grey-0);
   box-shadow: var(--shadow-sm);
   width: 100%;
   position: -webkit-sticky; /* For Safari */

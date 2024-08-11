@@ -3,10 +3,10 @@ import Select from "./Select";
 
 const SortBy = ({ options }) => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const sortBy = searchParams.get("sortBy") || "";
+  const sortBy = searchParams.get("category") || "";
 
   const handleChange = (event) => {
-    searchParams.set("sortBy", event.target.value);
+    searchParams.set("category", event.target.value);
     setSearchParams(searchParams);
   };
 

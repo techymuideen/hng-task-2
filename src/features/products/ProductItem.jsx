@@ -17,7 +17,7 @@ const Container = styled.div`
   height: 100%;
   border-radius: 1.6rem;
   overflow: hidden;
-  background-color: var(--color-grey-50);
+  background-color: var(--color-grey-0);
   box-shadow: 0px 4px 8px 0px #00000014;
 
   margin: 0 auto;
@@ -27,7 +27,7 @@ const Top = styled.div`
   position: relative;
   text-align: center;
   padding: 1.5rem 1.5rem;
-  background-color: var(--color-grey-50);
+  background-color: var(--color-grey-0);
   max-height: 20rem;
 `;
 
@@ -45,7 +45,7 @@ const Price = styled.div`
 
 const Bottom = styled.div`
   padding: 1.5rem 1.5rem;
-  background-color: var(--color-grey-50);
+  background-color: var(--color-grey-0);
   margin-top: auto;
 
   & div div {

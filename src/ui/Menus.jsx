@@ -1,76 +1,149 @@
+import { createContext, useContext, useState } from "react";
+import { createPortal } from "react-dom";
+import { HiEllipsisVertical } from "react-icons/hi2";
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useOutsideClick } from "../hooks/useOutsideClick";
 
-import { BsCart } from "react-icons/bs";
-import { IoIosArrowDown } from "react-icons/io";
-import { BsPersonFillCheck } from "react-icons/bs";
-import { IoMdHelpCircleOutline } from "react-icons/io";
-import DarkModeToggle from "./DarkModeToggle";
+const MenusContext = createContext(undefined);
 
-const StyledMenu = styled.div`
+const Menu = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 1rem;
+`;
 
-  @media (max-width: 700px) {
-    display: none;
+const StyledToggle = styled.button`
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  border-radius: var(--border-radius-sm);
+  transform: translateX(0.8rem);
+  transition: all 0.2s;
+`;
+
+const StyledList = styled.ul`
+  position: fixed;
+  background-color: var(--color-grey-0);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--border-radius-sm);
+  right: ${(props) => props.position.x}px;
+  top: ${(props) => props.position.y}px;
+  z-index: 100;
+  text-align: center;
+  padding: 1rem;
+
+  &:last-child {
+    margin-bottom: 2rem;
   }
 `;
 
-const Container = styled(NavLink)`
+const StyledButton = styled.button`
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 1.2rem 4rem;
+  padding-left: 0.2rem;
+  font-size: 1.4rem;
+  transition: all 0.2s;
+
   display: flex;
   align-items: center;
-  border: none;
-  background: none;
-  padding: 1rem 0.5rem;
-  position: relative;
-  gap: 0.5rem;
+  justify-content: start;
+  gap: 1.6rem;
 
   &:hover {
-    color: var(--color-green-700);
+    background-color: var(--color-grey-50);
+  }
+
+  & svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    color: var(--color-grey-400);
+    transition: all 0.3s;
   }
 `;
 
-const Active = styled.div`
-  background-color: var(--color-primary-green);
-  border: 2px solid var(--color-grey-0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-grey-0);
-  padding: 0rem 0.4rem;
-  border-radius: 1000px;
+const Menus = ({ children }) => {
+  const [openId, setOpenId] = useState("");
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  text-align: center; /* Optional: center text alignment */
+  const close = () => setOpenId("");
+  const open = (id) => setOpenId(id);
 
-  position: absolute;
-  right: 0;
-  top: 0;
-`;
-
-const Menu = () => {
-  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   return (
-    <StyledMenu>
-      <Container>
-        <BsPersonFillCheck size={30} />
-        Hi, Muideen <IoIosArrowDown />
-      </Container>
-      <Container>
-        <IoMdHelpCircleOutline size={25} /> Help
-        <IoIosArrowDown />
-      </Container>
-      <Container to="cart">
-        {totalQuantity > 0 && <Active>{totalQuantity}</Active>}
-        <BsCart size={30} />
-      </Container>
-      <Container>
-        <DarkModeToggle />
-      </Container>
-    </StyledMenu>
+    <MenusContext.Provider
+      value={{ openId, open, close, position, setPosition }}
+    >
+      {children}
+    </MenusContext.Provider>
   );
 };
 
-export default Menu;
+const Toggle = ({ id, children }) => {
+  const context = useContext(MenusContext);
+
+  if (!context) {
+    throw new Error("Toggle must be used within a Menus provider");
+  }
+
+  const { openId, open, close, setPosition } = context;
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    const rect = e.currentTarget.getBoundingClientRect();
+
+    setPosition({
+      x: window.innerWidth - rect.width - rect.x - 50,
+      y: rect.y + rect.height,
+    });
+
+    openId === "" || openId !== id ? open(id) : close();
+  };
+
+  return <StyledToggle onClick={handleClick}>{children}</StyledToggle>;
+};
+
+const List = ({ id, children }) => {
+  const context = useContext(MenusContext);
+
+  if (!context) {
+    throw new Error("List must be used within a Menus provider");
+  }
+
+  const { openId, position, close } = context;
+  const ref = useOutsideClick(close, false);
+
+  if (openId !== id) return null;
+
+  return createPortal(
+    <StyledList ref={ref} position={position}>
+      {children}
+    </StyledList>,
+    document.body,
+  );
+};
+
+const Button = ({ children, icon, onClick }) => {
+  const { close } = useContext(MenusContext);
+
+  const handleClick = () => {
+    onClick?.();
+    close();
+  };
+
+  return (
+    <li>
+      <StyledButton onClick={handleClick}>
+        {icon} <span>{children}</span>
+      </StyledButton>
+    </li>
+  );
+};
+
+Menus.Menu = Menu;
+Menus.Toggle = Toggle;
+Menus.List = List;
+Menus.Button = Button;
+
+export default Menus;

@@ -54,7 +54,7 @@ const variations = {
 
 const Button = styled.button`
   border: none;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-sm);
 
   display: flex;
   align-items: center;

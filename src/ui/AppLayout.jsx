@@ -11,7 +11,7 @@ const StyledAppLayout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4rem;
-  background-color: var(--color-grey-0);
+  background-color: var(--color-grey-50);
 
   @media (max-width: 1000px) {
     padding: 2rem 4rem;

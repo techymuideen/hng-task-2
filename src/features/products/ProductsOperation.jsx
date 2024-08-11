@@ -9,9 +9,8 @@ function ProductsOperations() {
         filteredField="status"
         options={[
           { value: "all", name: "All" },
-          { value: "checked-out", name: "Checked out" },
-          { value: "checked-in", name: "Checked in" },
-          { value: "unconfirmed", name: "Unconfirmed" },
+          { value: "new-products", name: "New Products" },
+          { value: "used-products", name: "Used Products" },
         ]}
       />
 
@@ -25,8 +24,8 @@ function ProductsOperations() {
           },
           { value: "health-beauty", label: "Health and Beauty" },
           { value: "home-offices", label: "Home and Offices" },
-          { value: "Electronics", label: "Health and Beauty" },
-          { value: "health-beauty", label: "Health and Beauty" },
+          { value: "electronics", label: "Electronics" },
+          { value: "fashion", label: "Fashion" },
         ]}
       />
     </TableOperations>

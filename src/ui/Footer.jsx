@@ -12,7 +12,7 @@ const StyledFooter = styled.footer`
   max-width: 144rem;
 
   padding: 2rem 8rem;
-  background-color: var(--color-grey-50);
+  background-color: var(--color-grey-100);
 
   @media (max-width: 1000px) {
     padding: 1rem 4rem;

@@ -94,6 +94,7 @@ FOR DARK MODE */
   --color-brand-800: #3730a3;
   --color-brand-900: #312e81;
   --color-green: #166534;
+  --color-yellow: #F68B1E;
 
   --border-radius-tiny: 3px;
   --border-radius-sm: 5px;
@@ -119,7 +120,7 @@ html {
 body {
   font-family: "Poppins", sans-serif;
   color: var(--color-grey-700);
-  background-color: var(--color-grey-0);
+  background-color: var(--color-grey-50);
 
   transition: color 0.3s, background-color 0.3s;
   min-height: 100vh;

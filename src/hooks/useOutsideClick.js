@@ -1,13 +1,10 @@
 import { useEffect, useRef } from "react";
 
-export const useOutsideClick = (
-  handler: () => void,
-  listenCapturing = true,
-) => {
+export const useOutsideClick = (handler, listenCapturing = true) => {
   const ref = useRef();
 
   useEffect(() => {
-    const handleClick = (event: any) => {
+    const handleClick = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
         handler();
       }

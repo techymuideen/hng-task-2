@@ -10,6 +10,7 @@ import Pagination from "../../ui/Pagination.jsx";
 import Button from "../../ui/Button.jsx";
 import { Link } from "react-router-dom";
 import ProductsOperations from "./ProductsOperation.jsx";
+import { HiChevronRight } from "react-icons/hi2";
 
 const StyledProducts = styled.div`
   display: flex;
@@ -27,6 +28,7 @@ const Spinnerontainer = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
+  text-transform: uppercase;
 `;
 
 const Products = ({ size }) => {
@@ -46,7 +48,7 @@ const Products = ({ size }) => {
 
   return (
     <StyledProducts>
-      <ProductsOperations />
+      {size === "all" && <ProductsOperations />}
       <ProductsList>
         {products.map((product) => (
           <ProductItem
@@ -63,8 +65,9 @@ const Products = ({ size }) => {
       </ProductsList>
       {size === "few" && (
         <ButtonContainer>
-          <Button as={Link} to="/store">
-            See more products
+          <Button size="large" as={Link} to="/store">
+            <span> See All</span>
+            <HiChevronRight />
           </Button>
         </ButtonContainer>
       )}

@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import { HiEllipsisVertical } from "react-icons/hi2";
 import styled from "styled-components";
 import { useOutsideClick } from "../hooks/useOutsideClick";
+import { Link } from "react-router-dom";
 
 const MenusContext = createContext(undefined);
 
@@ -37,7 +38,7 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled(Link)`
   width: 100%;
   text-align: left;
   background: none;
@@ -124,7 +125,7 @@ const List = ({ id, children }) => {
   );
 };
 
-const Button = ({ children, icon, onClick }) => {
+const Button = ({ children, icon, onClick, to }) => {
   const { close } = useContext(MenusContext);
 
   const handleClick = () => {
@@ -134,7 +135,7 @@ const Button = ({ children, icon, onClick }) => {
 
   return (
     <li>
-      <StyledButton onClick={handleClick}>
+      <StyledButton to={to} onClick={handleClick}>
         {icon} <span>{children}</span>
       </StyledButton>
     </li>

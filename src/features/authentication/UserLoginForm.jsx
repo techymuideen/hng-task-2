@@ -3,29 +3,29 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
-// import { useLogin } from "./useLogin";
-// import SpinnerMini from "../../ui/SpinnerMini";
+import { useLogin } from "./useLogin";
+import SpinnerMini from "../../ui/SpinnerMini";
 
 function AdminLoginForm() {
   const [email, setEmail] = useState("gepap87854@foraro.com");
   const [password, setPassword] = useState("123456789");
 
-  // const { login, isLoading } = useLogin();
+  const { login, isLoading } = useLogin();
 
   function handleSubmit(event) {
     event?.preventDefault();
 
     if (!email || !password) return;
 
-    // login(
-    //   { email, password },
-    //   {
-    //     onSettled: () => {
-    //       setEmail("");
-    //       setPassword("");
-    //     },
-    //   },
-    // );
+    login(
+      { email, password },
+      {
+        onSettled: () => {
+          setEmail("");
+          setPassword("");
+        },
+      },
+    );
   }
 
   return (
@@ -38,7 +38,7 @@ function AdminLoginForm() {
           autoComplete="username"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          // disabled={isLoading}
+          disabled={isLoading}
         />
       </FormRowVertical>
       <FormRowVertical label="Password">
@@ -48,12 +48,12 @@ function AdminLoginForm() {
           autoComplete="current-password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          // disabled={isLoading}
+          disabled={isLoading}
         />
       </FormRowVertical>
       <FormRowVertical>
-        <Button size="medium" variation="primary">
-          Login
+        <Button size="medium" $variation="primary" disabled={isLoading}>
+          {!isLoading ? "Login" : <SpinnerMini />}
         </Button>
       </FormRowVertical>
     </Form>

@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 import Menu from "./Menu";
 import MainNav from "./MainNav";
+import { useUser } from "../features/authentication/useUser";
 
 const HeaderContainer = styled.header`
   background-color: var(--color-grey-0);
@@ -46,6 +47,8 @@ const StyledHeader = styled.div`
 `;
 
 const Header = () => {
+ 
+
   return (
     <HeaderContainer>
       <StyledHeader>

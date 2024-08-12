@@ -14,6 +14,8 @@ import DarkModeToggle from "./DarkModeToggle";
 import CartIcon from "../features/cart/CartIcon";
 import Menus from "./Menus";
 import Logout from "../features/authentication/Logout";
+import { useUser } from "../features/authentication/useUser";
+import Button from "./Button";
 
 const StyledMenu = styled.div`
   display: flex;
@@ -40,7 +42,7 @@ const Container = styled(NavLink)`
   }
 `;
 
-const LiveChat = styled(Link)`
+const YellowButton = styled(Link)`
   background-color: var(--color-yellow);
   color: #fff;
   padding: 0.8rem 2rem;
@@ -49,9 +51,13 @@ const LiveChat = styled(Link)`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  text-align: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
 `;
 
 const Menu = () => {
+  const { isAuthenticated } = useUser();
   const navigate = useNavigate();
   return (
     <Menus>
@@ -60,32 +66,33 @@ const Menu = () => {
           <Menus.Toggle id={"account"}>
             <Container>
               <BsPersonFillCheck size={30} />
-              Hi, Muideen <IoIosArrowDown />
+              {isAuthenticated ? "Hi, Muideen" : "Account"} <IoIosArrowDown />
             </Container>
           </Menus.Toggle>
           <Menus.List id={"account"}>
-            <Menus.Button
-              icon={<FaRegUser />}
-              onClick={() => navigate("account")}
-            >
+            {!isAuthenticated && (
+              <YellowButton to="login" size="large">
+                Sign up
+              </YellowButton>
+            )}
+            <Menus.Button icon={<FaRegUser />} to="/customer/account">
               My Account
             </Menus.Button>
 
-            <Menus.Button icon={<BsBox2 />} onClick={() => navigate("/admin")}>
+            <Menus.Button icon={<BsBox2 />} to="customer/order">
               Order
             </Menus.Button>
 
-            <Menus.Button icon={<FiMail />} onClick={() => navigate("/user")}>
-              Inbox
-            </Menus.Button>
+            {isAuthenticated && (
+              <Menus.Button icon={<FiMail />} to="customer/account/inbox">
+                Inbox
+              </Menus.Button>
+            )}
 
-            <Menus.Button
-              icon={<FaRegHeart />}
-              onClick={() => navigate("/user")}
-            >
+            <Menus.Button icon={<FaRegHeart />} to="customer/wishlist">
               Saved Item
             </Menus.Button>
-            <Logout>Logout</Logout>
+            {isAuthenticated && <Logout>Logout</Logout>}
           </Menus.List>
 
           <Menus.Toggle id={"help"}>
@@ -95,33 +102,31 @@ const Menu = () => {
             </Container>
           </Menus.Toggle>
           <Menus.List id={"help"}>
-            <Menus.Button onClick={() => navigate("account")}>
-              Help Center
-            </Menus.Button>
+            <Menus.Button to="help-center">Help Center</Menus.Button>
 
-            <Menus.Button onClick={() => navigate("account")}>
+            <Menus.Button to="help-center/place-an-order">
               Place an Order
             </Menus.Button>
 
-            <Menus.Button onClick={() => navigate("account")}>
+            <Menus.Button to="help-center/payment-options">
               Payment options
             </Menus.Button>
 
-            <Menus.Button onClick={() => navigate("account")}>
+            <Menus.Button to="help-center/track-an-order">
               Track an order
             </Menus.Button>
 
-            <Menus.Button onClick={() => navigate("account")}>
+            <Menus.Button to="help-center/cancel-an-order">
               Cancel an order
             </Menus.Button>
 
-            <Menus.Button onClick={() => navigate("account")}>
+            <Menus.Button to="help-center/returns-and-refunds">
               Returns and Refunds
             </Menus.Button>
-            <LiveChat size="large">
+            <YellowButton size="large">
               {" "}
               <IoChatboxEllipsesOutline /> <span>Live chat</span>
-            </LiveChat>
+            </YellowButton>
           </Menus.List>
           <Container to="cart">
             <CartIcon />

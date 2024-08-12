@@ -33,11 +33,11 @@ const SliderImage = styled.img`
 `;
 
 const images = [
-  "../../public/promo1.avif",
-  "../../public/promo2.avif",
-  "../../public/promo3.avif",
-  "../../public/promo4.avif",
-  "../../public/promo5.avif",
+  "./promo1.avif",
+  "./promo2.avif",
+  "./promo3.avif",
+  "./promo4.avif",
+  "./promo5.avif",
 ];
 
 const Slider = () => {

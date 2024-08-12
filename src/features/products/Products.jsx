@@ -32,7 +32,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Products = ({ size }) => {
-  const { products, error, isLoading } = useProducts({ size });
+  const { products, error, isLoading, count } = useProducts();
 
   if (isLoading) {
     return (
@@ -55,8 +55,8 @@ const Products = ({ size }) => {
             key={product.id}
             product={{
               id: product.id,
-              name: product.title,
-              image: product.image,
+              name: product.name,
+              image: product.image_url,
               price: product.price,
               description: product.description,
             }}
@@ -71,7 +71,7 @@ const Products = ({ size }) => {
           </Button>
         </ButtonContainer>
       )}
-      {size === "all" && <Pagination />}
+      {size === "all" && <Pagination count={count} />}
     </StyledProducts>
   );
 };

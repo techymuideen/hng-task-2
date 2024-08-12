@@ -6,6 +6,10 @@ const Form = styled.form`
     css`
       padding: 2.4rem 4rem;
 
+      @media (max-width: 500px) {
+        padding: 2.4rem 1.5rem;
+      }
+
       /* Box */
       background-color: var(--color-grey-0);
       border: 1px solid var(--color-grey-100);

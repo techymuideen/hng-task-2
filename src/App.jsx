@@ -13,6 +13,7 @@ import Home from "./pages/Home";
 import store from "./store/index";
 import Store from "./pages/Store";
 import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   const queryClient = new QueryClient({
@@ -32,6 +33,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="login" element={<Login />} />
+              <Route path="signup" element={<Signup />} />
               <Route element={<AppLayout />}>
                 <Route path="/" element={<Home />} />
                 <Route path="cart" element={<Cart />} />

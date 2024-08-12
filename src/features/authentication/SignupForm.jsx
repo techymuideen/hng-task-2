@@ -8,12 +8,13 @@ import SpinnerMini from "../../ui/SpinnerMini";
 
 // Email regex: /\S+@\S+\.\S+/
 
-function SignupForm({ role }) {
+const SignupForm = ({role}) => {
   const { signup, isLoading } = useSignup();
   const { register, formState, handleSubmit, getValues, reset } = useForm();
   const { errors } = formState;
 
   const submitHandler = ({ fullName, email, password }) => {
+    const role = "customer";
     signup(
       { fullName, email, password, role },
       {
@@ -47,7 +48,7 @@ function SignupForm({ role }) {
       </FormRow>
 
       <FormRow
-        label="Password (min 8 characters)"
+        label="Password (min 6 characters)"
         error={errors?.password?.message}
       >
         <Input
@@ -56,8 +57,8 @@ function SignupForm({ role }) {
           {...register("password", {
             required: "This field is required",
             minLength: {
-              value: 8,
-              message: "Password needs a minimum of 8 character",
+              value: 6,
+              message: "Password needs a minimum of 6 character",
             },
           })}
         />
@@ -86,6 +87,6 @@ function SignupForm({ role }) {
       </FormRow>
     </Form>
   );
-}
+};
 
 export default SignupForm;

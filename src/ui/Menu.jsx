@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import { IoIosArrowDown } from "react-icons/io";
 import { BsPersonFillCheck } from "react-icons/bs";
@@ -15,7 +15,6 @@ import CartIcon from "../features/cart/CartIcon";
 import Menus from "./Menus";
 import Logout from "../features/authentication/Logout";
 import { useUser } from "../features/authentication/useUser";
-import Button from "./Button";
 
 const StyledMenu = styled.div`
   display: flex;
@@ -57,8 +56,10 @@ const YellowButton = styled(Link)`
 `;
 
 const Menu = () => {
-  const { isAuthenticated } = useUser();
-  const navigate = useNavigate();
+  const { isAuthenticated, user } = useUser();
+  const displayName = user?.user_metadata.fullName.split(" ")[0];
+  console.log(displayName);
+
   return (
     <Menus>
       <Menus.Menu>
@@ -66,7 +67,8 @@ const Menu = () => {
           <Menus.Toggle id={"account"}>
             <Container>
               <BsPersonFillCheck size={30} />
-              {isAuthenticated ? "Hi, Muideen" : "Account"} <IoIosArrowDown />
+              {isAuthenticated ? `Hi, ${displayName}` : "Account"}{" "}
+              <IoIosArrowDown />
             </Container>
           </Menus.Toggle>
           <Menus.List id={"account"}>

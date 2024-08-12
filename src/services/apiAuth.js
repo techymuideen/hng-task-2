@@ -8,7 +8,6 @@ export const signup = async ({ fullName, password, email, role }) => {
     options: {
       data: {
         fullName,
-        avatar: "",
         role,
       },
     },

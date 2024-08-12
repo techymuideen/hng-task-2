@@ -2,6 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
+import SlideImage1 from "../../public/promo1.avif";
+import SlideImage2 from "../../public/promo2.avif";
+import SlideImage3 from "../../public/promo3.avif";
+import SlideImage4 from "../../public/promo4.avif";
+import SlideImage5 from "../../public/promo5.avif";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -33,11 +38,11 @@ const SliderImage = styled.img`
 `;
 
 const images = [
-  "/promo1.avif",
-  "/promo2.avif",
-  "/promo3.avif",
-  "/promo4.avif",
-  "/promo5.avif",
+  SlideImage1,
+  SlideImage2,
+  SlideImage3,
+  SlideImage4,
+  SlideImage5,
 ];
 
 const Slider = () => {

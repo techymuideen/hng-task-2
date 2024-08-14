@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
+import { useUser } from "../features/authentication/useUser";
 
 import { IoIosArrowDown } from "react-icons/io";
 import { BsPersonFillCheck } from "react-icons/bs";
@@ -14,7 +15,6 @@ import DarkModeToggle from "./DarkModeToggle";
 import CartIcon from "../features/cart/CartIcon";
 import Menus from "./Menus";
 import Logout from "../features/authentication/Logout";
-import { useUser } from "../features/authentication/useUser";
 
 const StyledMenu = styled.div`
   display: flex;
@@ -58,7 +58,6 @@ const YellowButton = styled(Link)`
 const Menu = () => {
   const { isAuthenticated, user } = useUser();
   const displayName = user?.user_metadata.fullName.split(" ")[0];
-  console.log(displayName);
 
   return (
     <Menus>

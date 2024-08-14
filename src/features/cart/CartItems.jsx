@@ -42,10 +42,12 @@ const EmptyContainer = styled.div`
 `;
 
 const CartItems = () => {
-  const cartItems = useSelector((state) => state.cart.items);
-  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const cartItems = useSelector((state) => state.cart?.items);
+  const totalQuantity = useSelector((state) => state.cart?.totalQuantity);
 
-  if (cartItems.length === 0) {
+  // console.log(cartItems);
+
+  if (cartItems?.length === 0) {
     return (
       <EmptyContainer>
         <img src={cartImg} />
@@ -63,7 +65,7 @@ const CartItems = () => {
     <CartContainer>
       <p>Cart ({totalQuantity})</p>
       <StyledItems>
-        {cartItems.map((product) => (
+        {cartItems?.map((product) => (
           <CartItem product={product} key={product.id} />
         ))}
       </StyledItems>

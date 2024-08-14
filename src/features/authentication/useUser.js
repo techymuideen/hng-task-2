@@ -7,5 +7,10 @@ export const useUser = () => {
     queryFn: getCurrentUser,
   });
 
-  return { user, isLoading, isAuthenticated: user?.role === "authenticated" };
+  return {
+    user,
+    id: user?.id,
+    isLoading,
+    isAuthenticated: user?.role === "authenticated",
+  };
 };

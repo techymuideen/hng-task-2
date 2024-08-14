@@ -21,7 +21,7 @@ const Active = styled.div`
 `;
 
 const CartIcon = () => {
-  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
+  const totalQuantity = useSelector((state) => state.cart?.totalQuantity);
 
   return (
     <>

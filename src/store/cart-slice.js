@@ -5,6 +5,7 @@ const initialCartState = {
   items: [],
   totalQuantity: 0,
   totalAmount: 0,
+  changed: false,
 };
 
 const cartSlice = createSlice({
@@ -16,23 +17,26 @@ const cartSlice = createSlice({
       const existingItem = state.items.find((item) => item.id === newItem.id);
 
       state.totalQuantity++;
-      state.totalAmount = state.totalAmount + newItem.price;
+      state.totalAmount = state.totalAmount + Number(newItem.price);
+      state.changed = true;
 
       if (!existingItem) {
         state.items.push({
           id: newItem.id,
           title: newItem.title,
-          price: newItem.price,
+          price: Number(newItem.price),
           quantity: 1,
-          totalPrice: newItem.price,
+          totalPrice: Number(newItem.price),
           description: newItem.description,
           image: newItem.image,
         });
+        toast.success("Product added succesfully");
       } else {
         existingItem.quantity++;
-        existingItem.totalPrice = existingItem.totalPrice + existingItem.price;
+        existingItem.totalPrice =
+          existingItem.totalPrice + Number(existingItem.price);
+        toast.success("Item quantity has been updated");
       }
-      toast.success("Product added succesfully");
     },
 
     removeFromCart(state, action) {
@@ -40,7 +44,8 @@ const cartSlice = createSlice({
       const existingItem = state.items.find((item) => item.id === id);
 
       state.totalQuantity--;
-      state.totalAmount = state.totalAmount + existingItem.price;
+      state.totalAmount = state.totalAmount + Number(existingItem.price);
+      state.changed = true;
 
       if (existingItem.quantity === 1) {
         state.items = state.items.filter((item) => item.id !== existingItem.id);
@@ -59,7 +64,20 @@ const cartSlice = createSlice({
       state.items = state.items.filter((item) => item.id !== existingItem.id);
       state.totalQuantity = state.totalQuantity - existingItem.quantity;
       state.totalAmount = state.totalAmount + existingItem.totalPrice;
+      state.changed = true;
       toast.success("Product was removed from cart succesfully");
+    },
+
+    setCart(state, action) {
+      state.items = action.payload.items || [];
+      state.totalQuantity = action.payload.totalQuantity || 0;
+      state.totalAmount = action.payload.totalAmount || 0;
+      state.changed = action.payload.changed;
+    },
+    clearCart(state) {
+      state.items = [];
+      state.totalQuantity = 0;
+      state.changed = false;
     },
   },
 });

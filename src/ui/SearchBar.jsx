@@ -3,6 +3,8 @@ import { IoIosSearch } from "react-icons/io";
 import Button from "./Button";
 
 import styled from "styled-components";
+// import { useUser } from "../features/authentication/useUser";
+// import { useUpdateCart } from "../features/cart/useUpdateCart";
 
 const StyledSearchBar = styled.div`
   display: flex;
@@ -52,6 +54,18 @@ const Input = styled.input`
 `;
 
 const SearchBar = () => {
+  // const { id } = useUser();
+  // const { updateCart } = useUpdateCart();
+
+  // const data = { items: [{ id: "rice" }], totalQuantity: 2, totalAmount: 100 };
+
+  // const jsonData = JSON.stringify(data);
+
+  // const updateHandler = () => {
+  //   // No need to stringify `jsonData` as it's already an object
+  //   updateCart({ id, newCartData: data });
+  // };
+
   return (
     <StyledSearchBar>
       <InputContainer>
@@ -60,7 +74,9 @@ const SearchBar = () => {
         </label>
         <Input id="search" placeholder="Search by Product, Manufacturer..." />
       </InputContainer>
-      <Button size="large">Search</Button>
+      <Button size="large">
+        Search
+      </Button>
     </StyledSearchBar>
   );
 };

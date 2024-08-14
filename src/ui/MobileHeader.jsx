@@ -9,9 +9,32 @@ import { IoMdClose } from "react-icons/io";
 import { MdOutlineHome } from "react-icons/md";
 import { FaRegUser } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
+import DarkModeToggle from "./DarkModeToggle";
+import Logo from "./Logo";
+import CartIcon from "../features/cart/CartIcon";
 
-const NavContainer = styled.div`
+const StyledMobileHeader = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  flex: 100%;
+  justify-content: space-between;
+
+  nav {
+    display: flex;
+    align-items: center;
+
+    flex: 100%;
+    justify-content: space-between;
+    height: 5rem;
+    padding: 1rem 0.5rem;
+
+    & > div {
+      display: flex;
+      align-items: center;
+      gap: .5rem
+    }
+  }
 
   @media (min-width: 700px) {
     display: none;
@@ -34,7 +57,7 @@ const NavList = styled.ul`
     flex-direction: column;
     top: -6rem;
     right: -5rem;
-    background: linear-gradient(to right, #05371a, #010101);
+    background: var(--color-grey-0);
     min-width: 90vw;
     height: 120vh;
     z-index: 1000;
@@ -58,7 +81,7 @@ const StyledNavLink = styled(NavLink)`
 
     @media (max-width: 700px) {
       font-size: 2.5rem;
-      color: #fff;
+      color: var(--color-50);
       text-transform: uppercase;
       display: flex;
       align-items: center;
@@ -77,11 +100,8 @@ const StyledNavLink = styled(NavLink)`
 
 const Hamburger = styled.div`
   display: none;
-  flex-direction: column;
   cursor: pointer;
-  position: ${({ open }) => (open ? "fixed" : "absolute")};
-  top: ${({ open }) => (open ? "4rem;" : "-2rem")};
-  right: ${({ open }) => (open ? "3.5rem;" : "0")};
+  color: var(--color-grey-600);
 
   z-index: 1100; /* Above the NavList */
 
@@ -107,7 +127,21 @@ const Backdrop = styled.div`
     `}
 `;
 
-const MainNav = () => {
+const Container = styled(NavLink)`
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  padding: 1rem 0.5rem;
+  position: relative;
+  gap: 0.5rem;
+
+  &:hover {
+    color: var(--color-green-700);
+  }
+`;
+
+const MobileHeader = () => {
   const [open, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -115,13 +149,23 @@ const MainNav = () => {
   };
 
   return (
-    <NavContainer>
+    <StyledMobileHeader>
       <Backdrop open={open} onClick={handleClose} />
       <nav>
-        <Hamburger open={open} onClick={() => setOpen(!open)}>
-          {!open && <GiHamburgerMenu size="40px" color="#000" />}
-          {open && <IoMdClose size="40px" color="#fff" />}
-        </Hamburger>
+        <Logo />
+
+        <div>
+          <Container to="cart">
+            <CartIcon />
+          </Container>
+          <DarkModeToggle />
+
+          <Hamburger open={open} onClick={() => setOpen(!open)}>
+            {!open && <GiHamburgerMenu size="40px" color="inherit" />}
+            {open && <IoMdClose size="40px" color="inherit" />}
+          </Hamburger>
+        </div>
+
         <NavList open={open}>
           <li>
             <StyledNavLink to="/" onClick={() => setOpen(false)}>
@@ -159,8 +203,8 @@ const MainNav = () => {
           </li>
         </NavList>
       </nav>
-    </NavContainer>
+    </StyledMobileHeader>
   );
 };
 
-export default MainNav;
+export default MobileHeader;

@@ -2,8 +2,7 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
 import Menu from "./Menu";
-import MainNav from "./MainNav";
-import { useUser } from "../features/authentication/useUser";
+import MobileHeader from "./MobileHeader";
 
 const HeaderContainer = styled.header`
   background-color: var(--color-grey-0);
@@ -29,6 +28,10 @@ const StyledHeader = styled.div`
   margin: 0 auto;
   max-width: 144rem;
 
+  @media (max-width: 700px) {
+    display: none;
+  }
+
   @media (max-width: 1000px) {
     padding: 1rem 4rem;
     max-width: 100vw;
@@ -47,16 +50,16 @@ const StyledHeader = styled.div`
 `;
 
 const Header = () => {
- 
-
   return (
     <HeaderContainer>
       <StyledHeader>
-        <Logo />
+        <span>
+          <Logo />
+        </span>
         <SearchBar />
-        <MainNav />
         <Menu />
       </StyledHeader>
+      <MobileHeader />
     </HeaderContainer>
   );
 };

@@ -55,7 +55,7 @@ const YellowButton = styled(Link)`
   box-shadow: var(--shadow-sm);
 `;
 
-const Menu = () => {
+const Menuu = () => {
   const { isAuthenticated, user } = useUser();
   const displayName = user?.user_metadata.fullName.split(" ")[0];
 
@@ -141,4 +141,4 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+export default Menuu;

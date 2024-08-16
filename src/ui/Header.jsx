@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import SearchBar from "./SearchBar";
-import Menu from "./Menu";
+import Menuu from "./Menu";
 import MobileHeader from "./MobileHeader";
 
 const HeaderContainer = styled.header`
@@ -57,7 +57,7 @@ const Header = () => {
           <Logo />
         </span>
         <SearchBar />
-        <Menu />
+        <Menuu />
       </StyledHeader>
       <MobileHeader />
     </HeaderContainer>

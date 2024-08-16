@@ -16,10 +16,11 @@ const sizes = {
     border-radius: 1.2rem;
   `,
   large: css`
-    font-size: 2rem;
-    padding: 0.2rem 2rem;
+    font-size: 1.8rem;
+    padding: 0.5rem 2rem;
     font-weight: 500;
     box-shadow: none;
+    border-radius: 3px;
   `,
 };
 
@@ -48,6 +49,16 @@ const variations = {
 
     &:hover {
       background-color: var(--color-red-800);
+    }
+  `,
+  cart: css`
+    color: var(--color-grey-50);
+    background-color: var(--color-grey-700);
+    text-transform: uppercase;
+
+    &:hover {
+      color: var(--color-grey-100);
+      opacity: 0.7;
     }
   `,
 };

@@ -1,10 +1,12 @@
-import CartItems from "../features/cart/CartItems";
+import styled from "styled-components";
+import CartTable from "../features/cart/CartTable";
 
+const StyledCart = styled.div``;
 const Cart = () => {
   return (
-    <div>
-      <CartItems />
-    </div>
+    <StyledCart>
+      <CartTable />
+    </StyledCart>
   );
 };
 

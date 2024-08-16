@@ -28,6 +28,7 @@ export const useProducts = () => {
     isLoading,
     data: { data: products, count } = {},
     error,
+    refetch,
   } = useQuery({
     queryKey: ["products", page],
     queryFn: () => getProducts({ page }),
@@ -48,5 +49,5 @@ export const useProducts = () => {
       queryFn: () => getProducts({ page: page - 1 }),
     });
 
-  return { isLoading, error, products, count };
+  return { isLoading, error, products, count, refetch };
 };

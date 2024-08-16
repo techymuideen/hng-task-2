@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { cartActions } from "../../store/cart-slice";
+import Button from "../../ui/Button";
 
 const StyledCartItem = styled.li`
   display: flex;
@@ -56,15 +57,6 @@ const PriceContainer = styled.div`
   div {
     display: flex;
     gap: 1rem;
-
-    button {
-      background-color: var(--color-brand-700);
-      border: none;
-      color: #fff;
-      font-size: 3rem;
-      line-height: 0;
-      padding: 1.5rem 1.5rem;
-    }
   }
 `;
 
@@ -102,9 +94,13 @@ const CartItem = (props) => {
       <PriceContainer>
         <StyledPrice>${totalPrice.toFixed(2)}</StyledPrice>
         <div>
-          <button onClick={removeItemFromCartHandler}>-</button>
+          <Button size="large" onClick={removeItemFromCartHandler}>
+            -
+          </Button>
           <p>{quantity}</p>
-          <button onClick={addItemToCartHandler}>+</button>
+          <Button size="large" onClick={addItemToCartHandler}>
+            +
+          </Button>
         </div>
       </PriceContainer>
     </StyledCartItem>

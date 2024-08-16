@@ -32,7 +32,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Products = ({ size }) => {
-  const { products, error, isLoading, count } = useProducts();
+  const { products, error, isLoading, count, refetch } = useProducts();
 
   if (isLoading) {
     return (
@@ -43,7 +43,14 @@ const Products = ({ size }) => {
   }
 
   if (error) {
-    return <p>Unable to fetch products</p>;
+    return (
+      <Spinnerontainer>
+        <div>Unable to fetch roducts</div>
+        <Button size="large" onClick={() => refetch()}>
+          Try again
+        </Button>
+      </Spinnerontainer>
+    );
   }
 
   return (

@@ -12,5 +12,6 @@ export const useUser = () => {
     id: user?.id,
     isLoading,
     isAuthenticated: user?.role === "authenticated",
+    email: user?.email,
   };
 };

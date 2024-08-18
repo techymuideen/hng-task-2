@@ -11,6 +11,7 @@ const Heading = styled.h1`
     css`
       font-size: 3rem;
       font-weight: 600;
+      text-align: center;
     `}
 
   ${(props) =>
@@ -28,6 +29,9 @@ const Heading = styled.h1`
       font-weight: 500;
     `}
 
+   
+
+
     ${(props) =>
     props.as === "h4" &&
     css`
@@ -38,6 +42,13 @@ const Heading = styled.h1`
         color: var(--color-brand-500);
         text-decoration: underline;
       }
+
+      ${(props) =>
+        props.position === "left" &&
+        css`
+          text-align: right;
+          margin: 1rem 0;
+        `}
     `}
     
   line-height: 1.4;

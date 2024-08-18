@@ -36,15 +36,15 @@ const SignupForm = ({ role }) => {
 
   const submitHandler = ({ fullName, email, password }) => {
     const role = "customer";
-    signup(
-      { fullName, email, password, role },
-      {
-        onSettled: () => reset(),
-      },
-    );
+    if (role && country && state && fullName && email && password) {
+      signup(
+        { fullName, email, password, role, country, state, city },
+        {
+          onSettled: () => reset(),
+        },
+      );
+    }
   };
-
-  console.log(country, state, city);
 
   return (
     <Form onSubmit={handleSubmit(submitHandler)}>

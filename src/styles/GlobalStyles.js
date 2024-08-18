@@ -144,12 +144,14 @@ button {
 
 *:disabled {
   cursor: not-allowed;
+  filter: opacity(.4)
 }
 
 select:disabled,
 input:disabled {
   background-color: var(--color-grey-200);
   color: var(--color-grey-500);
+
 }
 
 input:focus,
@@ -251,6 +253,48 @@ cursor: pointer;
 .stdropdown-tool svg {
   fill: var(--color-grey-900);
 }
+
+.otp-box {
+ margin-top: 2rem;
+  font-size: 4rem;
+
+  span {
+    width: 2rem;
+    text-align: center
+  }
+}
+
+.otp-item {
+  width: 100%;
+  flex: 1;
+  height: 5rem;
+
+  border: 1px solid var(--color-grey-300);
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-sm);
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* IE 10+ */
+input[type=number] {
+    -ms-appearance: textfield;
+}
+
+
+  .error {
+  border: 1px solid red !important;
+}
+
 
 // .RootMenu[data-open],
 // .RootMenu:hover {

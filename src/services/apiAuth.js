@@ -1,7 +1,15 @@
 import supabase from "./supabase";
 import { supabaseUrl } from "./supabase";
 
-export const signup = async ({ fullName, password, email, role }) => {
+export const signup = async ({
+  fullName,
+  password,
+  email,
+  role,
+  country,
+  state,
+  city,
+}) => {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
@@ -9,11 +17,41 @@ export const signup = async ({ fullName, password, email, role }) => {
       data: {
         fullName,
         role,
+        country,
+        state,
+        city,
       },
     },
   });
 
+  // const data = { fullName, password, email, role, country, state, city };
+  // const error = null;
+
   if (error) throw new Error(error.message);
+
+  return data;
+};
+
+export const retryOtp = async ({ email }) => {
+  const { error } = await supabase.auth.signInWithOtp({
+    email: email,
+  });
+
+  if (error) throw new Error(error.message);
+};
+
+export const verifyOtp = async ({ email, token }) => {
+  console.log(token);
+  const { data, error } = await supabase.auth.verifyOtp({
+    email,
+    token,
+    type: "email",
+  });
+
+  if (error) throw new Error(error.message);
+
+  console.log(error);
+  console.log(data);
 
   return data;
 };

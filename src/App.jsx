@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useDispatch, useSelector } from "react-redux";
 import { DarkModeProvider } from "./context/DarkModeContext";
 import { Toaster } from "react-hot-toast";
 
@@ -14,6 +13,7 @@ import Home from "./pages/Home";
 import Store from "./pages/Store";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Otp from "./pages/Otp";
 
 function App() {
   const queryClient = new QueryClient({
@@ -33,6 +33,7 @@ function App() {
           <Routes>
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
+            <Route path="otp" element={<Otp />} />
             <Route element={<AppLayout />}>
               <Route path="/" element={<Home />} />
               <Route path="cart" element={<Cart />} />

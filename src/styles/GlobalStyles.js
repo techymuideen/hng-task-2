@@ -131,7 +131,7 @@ body {
 input,
 button,
 textarea,
-select {
+select, .input-api {
   font: inherit;
   color: inherit;
 }
@@ -219,6 +219,39 @@ img {
 }
 
 
+.inputClassName, .stdropdown-container {
+background-color: transparent;
+border: none !important;
+outline: none;
+cursor: pointer;
+
+&:focus {
+  border: none;
+  outline: none;
+}
+}
+
+.containerClassName {
+  border: 1px solid var(--color-grey-300);
+  background-color: var(--color-grey-0);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--shadow-sm);
+  flex: 1;
+  cursor: pointer;
+
+  @media (max-width: 500px) {
+    width: 100%;
+  }
+}
+
+.stdropdown-menu {
+  background-color: var(--color-grey-0);
+}
+
+.stdropdown-tool svg {
+  fill: var(--color-grey-900);
+}
+
 // .RootMenu[data-open],
 // .RootMenu:hover {
 //   background: var(--active-unfocused);
@@ -264,7 +297,9 @@ img {
 //   background: var(--active-unfocused);
 // }
 
-
+.input-api {
+  width: 2rem;
+}
 
 `;
 

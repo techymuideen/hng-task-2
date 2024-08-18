@@ -22,7 +22,7 @@ function UserLogin() {
   return (
     <SignupLayout>
       <Logo />
-      <Heading as="h2">Sign up to your account</Heading>
+      <Heading as="h2">Create an account</Heading>
       <SignupForm role="customer" />
     </SignupLayout>
   );
